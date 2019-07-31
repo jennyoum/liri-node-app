@@ -1,8 +1,12 @@
 require("dotenv").config();
 var axios = require("axios");
-var spotify = require('node-spotify-api');
+var Spotify = require('node-spotify-api');
+var keys = require("./keys.js");
+var spotify = new Spotify(keys.spotify);
+var options = process.argv[2];
 
-switch(process.argv[2]){
+function runOptions(){
+switch(options){
     case 'concert-this':
         concertSearch();
         break;
@@ -18,7 +22,7 @@ switch(process.argv[2]){
     case 'do-what-it-says':
         whatever();
         break;
-};
+}};
 
 // Concert section
 function concertSearch(){
@@ -38,15 +42,17 @@ var band = process.argv[3];
 // Spotify section
 function songSearch(){
     var song = process.argv[3];
-  
-  spotify.search({ type: 'track', query: 'wannabe' }, function(err, data) {
+    
+  spotify.search({ type: 'track', query: song }, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
   
-  console.log(data); 
-  });
-}
+  console.log(data.tracks.items[0].album.artists); 
+  console.log(data.tracks.items[0].album.name); 
+  //console.log(data.album[0]);
+  })
+};
 
 // Movie section
 function movieSearch(){
@@ -84,4 +90,8 @@ function movieSearch(){
         }
         console.log(error.config);
     });
+};
+
+function whatever(){
+
 }
