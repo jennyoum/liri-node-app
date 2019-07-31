@@ -3,10 +3,8 @@ var axios = require("axios");
 var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
-var options = process.argv[2];
 
-function runOptions(){
-switch(options){
+switch(process.argv[2]){
     case 'concert-this':
         concertSearch();
         break;
@@ -22,7 +20,7 @@ switch(options){
     case 'do-what-it-says':
         whatever();
         break;
-}};
+};
 
 // Concert section
 function concertSearch(){
@@ -92,6 +90,3 @@ function movieSearch(){
     });
 };
 
-function whatever(){
-
-}
