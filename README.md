@@ -23,5 +23,14 @@
     * Venue location
     * Date of the Event
 
-To 
+To search a movie, type in node liri.js movie-this "your movie choice". Your search should look like this.
 ![PackageInstall](images/packageinstall.png)
+
+To search a band playing in town type in node liri.js concert-this "your band choice". Your search should look like this.
+![PackageInstall](images/concert.png)
+
+To search a song, type in node liri.js spotify-this-song "your song choice". Your search should look like this.
+![PackageInstall](images/spotify.png)
+
+To run a random function, type in node liri.js do-what-it-says. Your search should look like this.
+![PackageInstall](images/whatever.png)
