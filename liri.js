@@ -3,6 +3,8 @@ var axios = require("axios");
 var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
+var moment = require('moment');
+var fs = require("fs");
 
 switch(process.argv[2]){
     case 'concert-this':
@@ -31,7 +33,7 @@ var band = process.argv[3];
             console.log(`Your band results:
             Venue Name: ${response.data[0].venue['name']}
             Venue Location: ${response.data[0].venue['city']}
-            Date: ${response.data[0].datetime}
+            Date: ${moment(response.data[0].datetime).format("MMM Do YYYY")}
             `);
         }
     );
@@ -45,10 +47,11 @@ function songSearch(){
     if (err) {
       return console.log('Error occurred: ' + err);
     }
-  
-  console.log(data.tracks.items[0].album.artists); 
-  console.log(data.tracks.items[0].album.name); 
-  //console.log(data.album[0]);
+
+  console.log("Artist: ", data.tracks.items[0].album.artists[0].name); 
+  console.log("Album Name: ", data.tracks.items[0].album.name);
+  console.log("Song Name: ", data.tracks.items[0].name);
+  console.log("Link from Spotify: ", data.tracks.items[0].album.artists[0].external_urls);
   })
 };
 
@@ -90,3 +93,17 @@ function movieSearch(){
     });
 };
 
+// whatever section
+function whatever(){
+    fs.readFile("random.txt", "utf8", function(error, data) {
+        if (error) {
+          return console.log(error);
+        }
+        console.log(data);
+
+        var dataArr = data.split(",");
+
+        console.log(dataArr);
+      
+      });
+};
